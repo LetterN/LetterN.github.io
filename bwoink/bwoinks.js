@@ -250,6 +250,7 @@ var bwoinklist =[`<span style='font-weight:bold;color:red'>PM from-<b><a href='?
 `<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Baskilnation</a></b>: why did you give the clown a napalm grenade?</span>`,
 `<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Baskilnation</a></b>: So then, why a fire grenade?</span>`,
 `<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Devio</a></b>: SORRY</span>`,
+`<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Letter_N</a></b>: IC ISSUE</span>`,
 `<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Devio</a></b>: Sorry stop</span>`,
 `<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Monster860</a></b>: why did you blow up munitions</span>`,
 `<span style='font-weight:bold;color:red'>PM from-<b><a href='?'>Qustinnus</a></b>: Why are you stealing the pod</span>`,
