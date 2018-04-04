@@ -1,10 +1,8 @@
 <html>
 <head>
 <style>
-body {color: #FFF;
-	text-align: center;
-	font-family: Verdana;
-}
+	body {color: #FFF;}
+	
 @keyframes fadeout {
 	from {opacity: 1;} to {opacity: 0}
 }
@@ -146,11 +144,14 @@ setInterval(() => {
 }, 16.6667);
 </script>
 </head>
-<body onkeydown="">
-<input type="text" value="0" id="recordtime">
-<input type="button" value="start" onclick="record(document.getElementById('recordtime').value)">
-<input type="button" value="stop" onclick="stop()">
-<span id='timer'>0</span><br><br>
-<div style='position:relative;width:1280px;height:720px;border:1px solid red;background:black;font-family:Verdana;font-size:13px' id='bwoinkwindow'></div>
+	<body onkeydown="">
+	<input type="text" value="0" id="recordtime">
+	<input type="button" value="start" onclick="record(document.getElementById('recordtime').value)">
+	<input type="button" value="stop" onclick="stop()">
+	<span id='timer'>0</span><br><br>
+	<div 
+	     style='position:relative;width:1280px;height:720px;border:1px solid red;background:black;font-family:Verdana;font-size:13px' 
+	     id='bwoinkwindow'>
+	</div>
 </body>
 </html>
