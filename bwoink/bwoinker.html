@@ -1,6 +1,9 @@
 <html>
 <head>
 <title>SS13 Ahelp Music</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 @keyframes fadeout {
 	from {opacity: 1;} to {opacity: 0}
@@ -148,17 +151,16 @@ setInterval(() => {
 	<center>
 		<input type="button" value="start" onclick="record(document.getElementById('recordtime').value)">
 		<input type="button" value="stop" onclick="stop()">
+		<input type="button" value="change ogg" onclick="req.open("GET", document.getElementById('recordtime').ogg, true);">
 	</center>
 	<br>
 	<span id='timer'>0</span> 
 	<br>
 	Time to start: 
-	<input type="text" value="0" id="recordtime">
-	<!--
-	ogg:
-
-	<input type="text" value="https://raw.githubusercontent.com/tgstation/tgstation/master/sound/effects/adminhelp.ogg" id="link">
-	-->
+	<input type="text" value="0" id="recordtime"/>
+	OGG:
+	<input type="text" value="https://raw.githubusercontent.com/tgstation/tgstation/master/sound/effects/adminhelp.ogg" id="ogg"/>
+	
 	<br><br>
 	<div style='position:relative;width:1280px;height:720px;border:1px solid red;background:black;font-family:Verdana;font-size:13px' id='bwoinkwindow'></div>
 </body>
