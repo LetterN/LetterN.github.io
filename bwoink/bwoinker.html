@@ -25,16 +25,6 @@
 <script src="ngeurl.js"></script>
 <script src="bwoinks.js"></script>
 <script>
-function shittychecksystem(){
-	link = document.getElementById('ogg').value;
-	req.responseType = "arraybuffer";
-	req.open("GET", link, true);
-	req.onload = () => {
-	ctx.decodeAudioData(req.response, (buf) => {
-		bwoinkbuf = buf;
-	});
-	};
-}
 var bwoinkbuf;
 var catbuf;
 var bwoinkrate = 0.6170518856924528;
@@ -43,13 +33,6 @@ var ctx = new AudioContext();
 var link
 var keytonote = {};
 req.responseType = "arraybuffer";
-req.open("GET", link, true);
-req.onload = () => {
-	ctx.decodeAudioData(req.response, (buf) => {
-		bwoinkbuf = buf;
-	});
-};
-req.send();
 var req2 = new XMLHttpRequest();
 req2.responseType = "arraybuffer";
 req2.open("GET", ngeurl, true);
@@ -59,7 +42,18 @@ req2.onload = () => {
 	});
 };
 req2.send();
-
+	
+function shittychecksystem(){
+	link = document.getElementById('ogg').value;
+	req.responseType = "arraybuffer";
+	req.open("GET", link, true);
+	req.onload = () => {
+		ctx.decodeAudioData(req.response, (buf) => {
+		bwoinkbuf = buf;
+		});
+	};
+	req.send();
+}
 var tostop = new Set();
 
 function playbwoink(note, time = 0, sayid) {
