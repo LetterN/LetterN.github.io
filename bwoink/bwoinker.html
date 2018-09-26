@@ -25,12 +25,15 @@
 <script src="ngeurl.js"></script>
 <script src="bwoinks.js"></script>
 <script>
+function shittychecksystem(){
+	link = document.getElementById('ogg').value;
+}
 var bwoinkbuf;
 var catbuf;
 var bwoinkrate = 0.6170518856924528;
 var req = new XMLHttpRequest();
 var ctx = new AudioContext();
-var link = document.getElementById('ogg').value;
+var link
 var keytonote = {};
 req.responseType = "arraybuffer";
 req.open("GET", link, true);
@@ -151,7 +154,7 @@ setInterval(() => {
 	<center>
 		<input type="button" value="start" onclick="record(document.getElementById('recordtime').value)"/>
 		<input type="button" value="stop" onclick="stop()"/>
-		<input type="button" value="change ogg" onclick="req.open('GET', document.getElementById('ogg').value, true);"/>
+		<input type="button" value="change ogg" onclick="shittychecksystem()"/>
 	</center>
 	<br>
 	<span id='timer'>0</span> 
