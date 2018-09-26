@@ -27,6 +27,13 @@
 <script>
 function shittychecksystem(){
 	link = document.getElementById('ogg').value;
+	req.responseType = "arraybuffer";
+	req.open("GET", link, true);
+	req.onload = () => {
+	ctx.decodeAudioData(req.response, (buf) => {
+		bwoinkbuf = buf;
+	});
+	};
 }
 var bwoinkbuf;
 var catbuf;
