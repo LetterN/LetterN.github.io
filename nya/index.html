@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Something is nyat right</title>
+		<script src="./scripts/jquery.min.js"></script>
+		<script src="./scripts/converter.js"></script>
+		<script src="./scripts/main.js"></script>
+		<link rel="stylesheet" href="./common.css"></link>
+	</head>
+	<body>
+		<div class="uiTitle">
+			NT R7D Terminal: Translator
+		</div>
+		<div class="uiContent" style="height: 100%;">
+			<div class="block">
+				<h2>Text2Cat</h2>
+				<h3>Key</h3>
+				<input id="T2C-Key" type="text" value=""></input>
+				<a onclick="getKey(JSON.parse(('#T2C-Key')[0].value));">Compute Keys</a>
+				<h3>Text</h3>
+				<input id="T2C-Text" type="text" value=""></input>
+				<a onclick="convert('#T2C-Text','#T2C-Out');">Compute Text</a>
+				<div id="T2C-Out" class="block">
+					<!-- find out how to make the browser output pure text (with tabs)-->
+					Output 
+				</div>
+			</div>
+			<div class="block">
+				<h2>Cat2Text</h2>
+				<h3>Key</h3>
+				<input id="C2T-Key" type="text" value=""></input>
+				<a onclick="getDefinitions(JSON.parse(('#T2C-Key')[0].value));">Compute Keys</a>
+				<h3>Text</h3>
+				<input id="C2T-Text" type="text" value=""></input>
+				<a onclick="convert('#C2T-Text','#C2T-Out');">Compute Text</a>
+				<div id="C2T-Out" class="block">
+					output, in courier
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
