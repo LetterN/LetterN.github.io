@@ -17,7 +17,13 @@ window.onload = ()=>{
 		stop.classList.remove("linkOff");
 	});
 }
-
+/**
+ * Loads audio to the chosen buffer
+ * @param {String} url 
+ * @param {String} who 
+ * @param {String} restype - Chosen buffer
+ * @param {Function} cb 
+ */
 function buffAudio(url, who, restype="arraybuffer", cb=()=>{}){ //not blocking.
 	var request = new XMLHttpRequest();
 	if(restype){

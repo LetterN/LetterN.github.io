@@ -9,32 +9,34 @@
 	</head>
 	<body>
 		<div class="uiTitle">
-			NT R7D Terminal: Translator
+			NT R&AMP;D Terminal: Translator
 		</div>
 		<div class="uiContent" style="height: 100%;">
 			<div class="block">
 				<h2>Text2Cat</h2>
 				<h3>Key</h3>
 				<input id="T2C-Key" type="text" value=""></input>
-				<a onclick="getKey(JSON.parse(('#T2C-Key')[0].value));">Compute Keys</a>
+				<a onclick="getKeyDef('#T2C-Key','#T2C-Out');">Compute Keys</a>
 				<h3>Text</h3>
 				<input id="T2C-Text" type="text" value=""></input>
 				<a onclick="convert('#T2C-Text','#T2C-Out');">Compute Text</a>
-				<div id="T2C-Out" class="block">
-					<!-- find out how to make the browser output pure text (with tabs)-->
-					Output 
+				<br>
+				<h4>Output</h4>
+				<div id="T2C-Out" class="block" style="overflow-y: scroll;scroll-behavior:smooth;height: 316px;">
+					<!-- never actualy do it--> 
 				</div>
 			</div>
 			<div class="block">
 				<h2>Cat2Text</h2>
 				<h3>Key</h3>
 				<input id="C2T-Key" type="text" value=""></input>
-				<a onclick="getDefinitions(JSON.parse(('#T2C-Key')[0].value));">Compute Keys</a>
+				<a onclick="getKeyDef('#C2T-Key','#C2T-Out');">Compute Keys</a>
 				<h3>Text</h3>
 				<input id="C2T-Text" type="text" value=""></input>
 				<a onclick="convert('#C2T-Text','#C2T-Out');">Compute Text</a>
-				<div id="C2T-Out" class="block">
-					output, in courier
+				<br>
+				<h4>Output</h4>
+				<div id="C2T-Out" class="block" style="overflow-y: scroll;scroll-behavior:smooth;height: 316px;">
 				</div>
 			</div>
 		</div>

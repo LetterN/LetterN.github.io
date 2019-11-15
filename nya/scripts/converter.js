@@ -9,9 +9,7 @@ var nyadefinition = {};
 function getKey(shift){
 	const letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 	var lengthbus = letters.length * 2;
-	if(shift){
-		return
-	}
+
 	let nyas_per_letter = Math.round(list_of_nyaas.length/lengthbus);
 	let nyas_letter = 0; //what letter are we at?
 	let dumbiter = 0; //loop that uses the NPL
@@ -48,16 +46,19 @@ function getKey(shift){
  */
 function getDefinitions(shift){
 	var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-	
+
 	for(var i in letters){
 		let str = letters[i];
+		if(shift){
+			//inset forloop h
+		}
 		for(var i in nya2letter[str]){
 			let int = nya2letter[str][i];
-			nyadefinition[int] = str;
+			nyadefinition[int] = str; //"kyu":"a"
 		}
 		for(var i in nya2letter[str.toUpperCase()]){
 			let int = nya2letter[str.toUpperCase()][i];
-			nyadefinition[int] = str.toUpperCase();
+			nyadefinition[int] = str.toUpperCase(); //"kya":"A"
 		}
 	}
 }
@@ -77,11 +78,10 @@ function string2nya(string){
 		}
 		if(str == ","){
 			outpush = "&comma;";
-		}		
-		//console.log(nya2letter[str][Math.floor(Math.random()*nya2letter[str].length)])
+		}
 		out_dat.push(outpush);
 	}
-	console.log(out_dat, "p2:",out_dat.toString().replace(/\,/g,"&nbsp;"))
+	console.log(out_dat, "p2:",out_dat.toString().replace(/\,/g,"&nbsp;"));
 	return out_dat.toString().replace(/\,/g,"&nbsp;");
 }
 

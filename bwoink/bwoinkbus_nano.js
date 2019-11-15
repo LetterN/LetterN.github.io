@@ -1,20 +1,23 @@
-var catbuf;
 var ctx = new AudioContext();
-var req2 = new XMLHttpRequest();
-
-req2.responseType = "arraybuffer";
 
 var tostop = new Set();
 
 var isrecording = false;
 var recordtime = 0;
-		//ngeurl
-function play(thingtoplay = null, timeat = 0) {
-	req2.open("GET", thingtoplay, true);
-	req2.onload = () => {
-		ctx.decodeAudioData(req2.response, (buf) => {catbuf = buf;} );
+/**
+ * 
+ * @param {String} thingtoplay 
+ * @param {Number} timeat 
+ */
+function play(thingtoplay = null, timeat = 0){
+	let catbuf;
+	let req = new XMLHttpRequest();
+	req.responseType = "arraybuffer";
+	req.open("GET", thingtoplay, true);
+	req.onload = () => {
+		ctx.decodeAudioData(req.response, (buf) => {catbuf = buf;} );
 	};
-	req2.send();
+	req.send();
 		
 	isrecording = true;
 	recordtime = ctx.currentTime - timeat;
