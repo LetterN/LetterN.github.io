@@ -20,7 +20,7 @@ function getKey(shift){
 			nyas_letter++
 		}
 		if(letters[Math.round(Math.max(nyas_letter/2,0))] == undefined){
-			console.log("Done!")
+			console.log("Done!");
 			return
 		}
 		let nyaas = list_of_nyaas[i];
@@ -66,11 +66,11 @@ function getDefinitions(shift){
 function string2nya(string){
 	let stringy = string.split("");
 	let out_dat = [];
-	console.log(stringy)
+	//console.log(stringy);
 	for(var i in stringy){
 		let str = stringy[i];
 		let outpush = "";
-		console.log(str)
+		//console.log(str);
 		try{
 			outpush = nya2letter[str][Math.floor(Math.random()*nya2letter[str].length)];
 		}catch(e){
@@ -81,7 +81,7 @@ function string2nya(string){
 		}
 		out_dat.push(outpush);
 	}
-	console.log(out_dat, "p2:",out_dat.toString().replace(/\,/g,"&nbsp;"));
+	//console.log(out_dat, "p2:",out_dat.toString().replace(/\,/g,"&nbsp;"));
 	return out_dat.toString().replace(/\,/g,"&nbsp;");
 }
 

@@ -35,4 +35,4 @@ function getKeyDef(inputID, outputID){
 		//getDefinitions();
 	}
 	output.append(returnDat+"<br>");
-}	
+}
