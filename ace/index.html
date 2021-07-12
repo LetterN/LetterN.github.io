@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IT IS TIME</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<style>
+		body {
+			color: white;
+		}
+	</style>
+</head>
+<body class="bg-dark">
+	<div class="container-fluid">
+		<div class="py-5 text-center">
+			Youtube URL: <input id="input" onchange="loadVideo()" type="text" title="Input youtube URL here" autocomplete="url" value="https://www.youtube.com/watch?v=SGZJnLYvio0">
+			Time Sync (optimal range between 28.45 to 28.35): <input id="tsink" onchange="tsset()" type="number" step="0.01" title="Input timeskip" value="28.45">
+			<p>
+				<button class="btn btn-primary" onclick="playVideoSync()">Play video</button>
+			</p>
+			<h3>Yes, both has to be on screen or else it wont load.</h3>
+			You can either hit play on the selected video or hit the "play video" button for a better sync (this resets the timing!)
+			<noscript>
+				<h1>bla bla bla this requires JS obviously.</h1>
+			</noscript>
+		</div>
+		<div>
+			<div class="row justify-content-md-center">
+				<div class="col-md-auto">
+					<div id="player_hidden"></div>
+				</div>
+				<div class="col-md-auto">
+					<div id="playercontainer"></div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-md-auto" id="player-hidden-tel">
+					TEL
+				</div>
+				<div class="col-md-auto" id="player-tel">
+					TEL
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		console.log(
+			"%cSHUT THE FUCK UP YOUTUBE API",
+			"color:red;font-size:4rem;"
+		);
+		console.log(
+			"%cPLEASE JUST SHUT UP",
+			"font-size:1.5rem;"
+		);
+		console.log(
+			"%cI just want to see my fucking logs instead of cookie spam or CORS violation (x255)",
+			"font-size:1.2rem;"
+		);
+		// has to load after dom
+		const IT_IS_TIME = "p6OFslpijhA";
+		// api
+		const tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		const firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		const v2telbox = document.getElementById("player-hidden-tel");
+		const vidtelbox = document.getElementById("player-tel");
+		let armed = {"v2": false, "mainvideo":false};
+		let ts = 28.45;;
+		let delta = 0
+		let v2;
+		let player;
+		let player_blockev;
+		function onYouTubeIframeAPIReady() {
+			v2 = new YT.Player('player_hidden', {
+				videoId: IT_IS_TIME,
+				width: "600",
+				playerVars: {
+					'playsinline': 1,
+					"disablekb": 1,
+					"controls": 0,
+					"start": ts, // 28.45.5
+					"modestbranding": 1,
+					"loop": 1,
+					"fs": 0,
+				},
+				events: {
+					'onReady': e => {armed.v2 = true; v2.playVideo();v2.pauseVideo(); },
+					'onStateChange': e => {
+						console.info("v2", e);
+						if(e.data === 1){
+							v2.unMute();
+							delta = v2.getCurrentTime()-ts
+							v2telbox.innerHTML = `TEL:AC - ST: ${v2.getCurrentTime()-ts}`;
+						}
+						if(e.data === 2){
+							const loadeddt = v2.getDuration() * v2.getVideoLoadedFraction();
+							if(loadeddt !== 0 && v2.getCurrentTime() > loadeddt){
+								player.pauseVideo();
+							}
+						}
+					}
+				}
+			});
+			//autourl module
+			const lurl = new URL(window.location);
+			if(lurl.searchParams.get("v")){
+				document.getElementById("input").value = lurl.searchParams.get("v");
+			}
+		}
+
+		function loadVideo(){
+			let r = document.getElementById("input");
+			let sout;
+			if(r.value.length === 11){
+				sout = r.value;
+			} else {
+				try {
+					let k = new URL(r.value);
+					sout = k.searchParams.get("v");
+				} catch {
+					// nothing
+				}
+			}
+			if(sout === IT_IS_TIME){
+				//delete the dom
+				console.error("IT IS TIME.");
+			}
+			if(player){
+				player.destroy();
+			}
+			let v = document.createElement("div");
+			document.getElementById("playercontainer").appendChild(v);
+			v.id = "player";
+			player = new YT.Player("player", {
+				videoId: sout,
+				playerVars: {
+					'playsinline': 1,
+					"modestbranding": 1,
+				},
+				events: {
+					'onReady': e => {armed.mainvideo = true; player.mute(); },
+					'onStateChange': e => {
+						console.info("video", e);
+						if(e.data === 1){
+							if(player_blockev){
+								return;
+							}
+							if(armed.v2){
+								v2.seekTo(ts + player.getCurrentTime(), true);
+								v2.playVideo();
+								vidtelbox.innerHTML = `TEL:VID - ST: ${player.getCurrentTime()} || Δ${Math.abs(delta-player.getCurrentTime())} (lower == better)`;
+							} else {
+								player.pauseVideo();
+							}
+						}
+						if(e.data === 2 || e.data === 0 || e.data === 3){
+							v2.pauseVideo();
+						}
+					}
+				}
+			})
+		}
+
+		function playVideoSync(){
+			player_blockev = true;
+			player.seekTo(0, true);
+			v2.seekTo(28.45, true);
+			player.playVideo();
+			v2.playVideo();
+			player_blockev = false;
+		}
+
+		function tsset(){
+			const e = document.getElementById("tsink");
+			ts = Number(e.value) || 28.45;
+		}
+		window.onload = e =>{
+			loadVideo();
+		}
+	</script>
+</body>
+</html>
