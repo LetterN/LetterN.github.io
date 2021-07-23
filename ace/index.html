@@ -151,7 +151,7 @@
 							if(armed.v2){
 								v2.seekTo(ts + player.getCurrentTime(), true);
 								v2.playVideo();
-								vidtelbox.innerHTML = `TEL:VID - ST: ${player.getCurrentTime()} || Δ${Math.abs(delta-player.getCurrentTime())} (lower == better)`;
+								vidtelbox.innerHTML = `TEL:VID - ST: ${player.getCurrentTime()} || Δ${Math.abs(delta-player.getCurrentTime())} (closer to 0 == better)`;
 							} else {
 								player.pauseVideo();
 							}
